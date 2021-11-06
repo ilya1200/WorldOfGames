@@ -31,10 +31,11 @@ def load_game():
 
     def choose_game(games: List[Dict]) -> dict:
         """
-        Prompts the player to choose a game
+        Prompts the player to choose a game by number: 1,2,3,etc...
 
         :param games: The details for the games
         :return: The chosen game data
+        :raise ValueError: If invalid or not existing game number provided by player
         """
         player_prompt = "Please choose a game to play:\n"
         for index, game in enumerate(games):
@@ -42,6 +43,8 @@ def load_game():
             player_prompt += f"\t{game_number}.{game['name']} - {game['description']}\n"
 
         game_number = int(input(player_prompt))
+        if game_number not in range(1, len(games) + 1):
+            raise ValueError(f"Expect the chosen game number between 1 and {len(games)}, but got {game_number}")
 
         game_index = game_number - 1
         return games[game_index]
@@ -52,15 +55,20 @@ def load_game():
 
         :param difficulty_levels: a list of the levels for a particular game to choose from
         :return: The chosen level
+        :raise ValueError: If player doesnt provide a an existing level number between the easiest and hardest level
         """
         easiest = difficulty_levels[0]
         hardest = difficulty_levels[-1]
+
         difficulty_level = int(input(f"Please choose game difficulty from {easiest} to {hardest}:"))
+        if not (easiest < difficulty_level < hardest):
+            raise ValueError(f"Expected game difficulty from {easiest} to {hardest} but got {difficulty_level}")
+        if difficulty_level not in difficulty_levels:
+            raise ValueError(f"Level {difficulty_level} doesn't exist. Available levels:"+str(difficulty_levels))
+
         return difficulty_level
 
     all_games = get_games()
     chosen_game = choose_game(all_games)
     chosen_difficulty_level = choose_difficulty_level(chosen_game["difficulty_levels"])
     print(f"You chose to play:{chosen_game['name']} at level:{chosen_difficulty_level}")
-
-
