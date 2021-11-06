@@ -69,6 +69,24 @@ def load_game():
         return difficulty_level
 
     all_games = get_games()
-    chosen_game = choose_game(all_games)
-    chosen_difficulty_level = choose_difficulty_level(chosen_game["difficulty_levels"])
+    chosen_game = None
+    chosen_difficulty_level = None
+    while True:
+        try:
+            chosen_game = choose_game(all_games)
+        except ValueError as e:
+            print(e)
+            continue
+        else:
+            break
+
+    while True:
+        try:
+            chosen_difficulty_level = choose_difficulty_level(chosen_game["difficulty_levels"])
+        except ValueError as e:
+            print(e)
+            continue
+        else:
+            break
+
     print(f"You chose to play:{chosen_game['name']} at level:{chosen_difficulty_level}")
