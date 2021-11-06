@@ -14,17 +14,20 @@ def load_game():
             {
                 "name": "Memory Game",
                 "description": "a sequence of numbers will appear for 1 second and you have to guess it back",
-                "difficulty_levels": [1, 2, 3, 4, 5]
+                "easiest_level": 1,
+                "hardest_level": 5
             },
             {
                 "name": "Guess Game",
                 "description": "guess a number and see if you chose like the computer",
-                "difficulty_levels": [1, 2, 3, 4, 5]
+                "easiest_level": 1,
+                "hardest_level": 5
             },
             {
                 "name": "Currency Roulette",
                 "description": "try and guess the value of a random amount of USD in ILS",
-                "difficulty_levels": [1, 2, 3, 4, 5]
+                "easiest_level": 1,
+                "hardest_level": 5
             }
         ]
         return games
@@ -49,22 +52,19 @@ def load_game():
         game_index = game_number - 1
         return games[game_index]
 
-    def choose_difficulty_level(difficulty_levels: List[int]) -> int:
+    def choose_difficulty_level(easiest: int, hardest: int) -> int:
         """
         Prompts the player to choose difficulty level from levels list
 
-        :param difficulty_levels: a list of the levels for a particular game to choose from
+        :param easiest: The easiest level of the game
+        :param hardest: The hardest level of the game
         :return: The chosen level
-        :raise ValueError: If player doesnt provide a an existing level number between the easiest and hardest level
+        :raise ValueError: If player doesnt provide a number that represent a level between the easiest(include) and hardest(include) level
         """
-        easiest = difficulty_levels[0]
-        hardest = difficulty_levels[-1]
 
         difficulty_level = int(input(f"Please choose game difficulty from {easiest} to {hardest}:"))
         if not (easiest <= difficulty_level <= hardest):
             raise ValueError(f"Expected game difficulty from {easiest} to {hardest} but got {difficulty_level}")
-        if difficulty_level not in difficulty_levels:
-            raise ValueError(f"Level {difficulty_level} doesn't exist. Available levels:"+str(difficulty_levels))
 
         return difficulty_level
 
@@ -82,7 +82,7 @@ def load_game():
 
     while True:
         try:
-            chosen_difficulty_level = choose_difficulty_level(chosen_game["difficulty_levels"])
+            chosen_difficulty_level = choose_difficulty_level(chosen_game["easiest_level"], chosen_game["hardest_level"])
         except ValueError as e:
             print(e)
             continue
