@@ -14,17 +14,17 @@ def load_game():
             {
                 "name": "Memory Game",
                 "description": "a sequence of numbers will appear for 1 second and you have to guess it back",
-                "difficulty_levels": (1, 2, 3, 4, 5)
+                "difficulty_levels": [1, 2, 3, 4, 5]
             },
             {
                 "name": "Guess Game",
                 "description": "guess a number and see if you chose like the computer",
-                "difficulty_levels": (1, 2, 3, 4, 5)
+                "difficulty_levels": [1, 2, 3, 4, 5]
             },
             {
                 "name": "Currency Roulette",
                 "description": "try and guess the value of a random amount of USD in ILS",
-                "difficulty_levels": (1, 2, 3, 4, 5)
+                "difficulty_levels": [1, 2, 3, 4, 5]
             }
         ]
         return games
