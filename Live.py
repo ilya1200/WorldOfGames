@@ -61,7 +61,7 @@ def load_game():
         hardest = difficulty_levels[-1]
 
         difficulty_level = int(input(f"Please choose game difficulty from {easiest} to {hardest}:"))
-        if not (easiest < difficulty_level < hardest):
+        if not (easiest <= difficulty_level <= hardest):
             raise ValueError(f"Expected game difficulty from {easiest} to {hardest} but got {difficulty_level}")
         if difficulty_level not in difficulty_levels:
             raise ValueError(f"Level {difficulty_level} doesn't exist. Available levels:"+str(difficulty_levels))
@@ -89,4 +89,4 @@ def load_game():
         else:
             break
 
-    print(f"You chose to play:{chosen_game['name']} at level:{chosen_difficulty_level}")
+    print(f"You chose to play {chosen_game['name']} at level {chosen_difficulty_level}")
