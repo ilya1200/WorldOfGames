@@ -13,7 +13,7 @@ def load_game():
         games = [
             {
                 "name": "Memory Game",
-                "description": "a sequence of numbers will appear for 1 second and you have to guess it back",
+                "description": "a sequence of numbers will appear for 1 second and you have to\nguess it back",
                 "easiest_level": 1,
                 "hardest_level": 5
             },
