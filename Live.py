@@ -25,7 +25,7 @@ def load_game():
             },
             {
                 "name": "Currency Roulette",
-                "description": "try and guess the value of a random amount of USD in ILS",
+                "description": "Currency Roulette - try\nand guess the value of a random amount of USD in ILS",
                 "easiest_level": 1,
                 "hardest_level": 5
             }
