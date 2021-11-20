@@ -110,6 +110,7 @@ def load_game():
     else:
         raise ValueError(f"The game:{chosen_game['name']} is undefined")
 
-    game_status = "win" if game.play() else "lose"
+    is_win = game.play()
+    game_status = "win" if is_win else "lose"
     print(game_over_messages[game_status])
 
