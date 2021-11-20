@@ -19,7 +19,13 @@ class MemoryGame:
         self.sequence = random.choices(range(1, 102), k=self.difficulty)
 
     def get_list_from_user(self) -> List[int]:
-        pass
+        while True:
+            try:
+                player_values = input(f"Enter the numbers separated with space:").split()
+                return list(map(lambda str_value: int(str_value), player_values))
+            except ValueError as e:
+                print("Bad input: expected a list of ints separated by spaces")
+                continue
 
     def is_list_equal(self, first_list: List[int], second_list: List[int]) -> bool:
         """
