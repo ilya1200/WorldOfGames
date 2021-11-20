@@ -1,4 +1,6 @@
 from typing import List, Dict
+from Games.GuessGame import GuessGame
+from Games.MemoryGame import MemoryGame
 
 
 def welcome(name: str) -> str:
@@ -68,6 +70,11 @@ def load_game():
 
         return difficulty_level
 
+    game_over_messages = {
+        "win": "Congrats! You win!",
+        "lose": "Game lost"
+    }
+
     all_games = get_games()
     chosen_game = None
     chosen_difficulty_level = None
@@ -82,7 +89,8 @@ def load_game():
 
     while True:
         try:
-            chosen_difficulty_level = choose_difficulty_level(chosen_game["easiest_level"], chosen_game["hardest_level"])
+            chosen_difficulty_level = choose_difficulty_level(chosen_game["easiest_level"],
+                                                              chosen_game["hardest_level"])
         except ValueError as e:
             print(e)
             continue
@@ -90,3 +98,16 @@ def load_game():
             break
 
     print(f"You chose to play {chosen_game['name']} at level {chosen_difficulty_level}")
+    game = None
+    if chosen_game['name'] == "Memory Game":
+        game = MemoryGame(chosen_difficulty_level)
+    elif chosen_game['name'] == "Guess Game":
+        game = GuessGame(chosen_difficulty_level)
+    elif chosen_game['name'] == "Currency Roulette":
+        pass
+    else:
+        raise ValueError(f"The game:{chosen_game['name']} is undefined")
+
+    game_status = "win" if game.play() else "lose"
+    print(game_over_messages[game_status])
+
