@@ -26,7 +26,7 @@ class GuessGame:
             try:
                 player_guess = int(input(f"Guess a number between 1 to {self.difficulty}:"))
             except ValueError as e:
-                print(e)
+                print(f"Bad input expected a number between 1 to {self.difficulty}")
                 continue
             else:
                 return player_guess
