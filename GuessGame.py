@@ -34,8 +34,12 @@ class GuessGame:
     def play(self) -> bool:
         """
         Run the game
-        :return : The result of the game: True- Win, False-Lose
+
+        :return: The result of the game: True- Win, False-Lose
         """
         self.generate_number()
         player_guess = self.get_guess_from_user()
-        return self.secret_number == player_guess
+        game_result = self.secret_number == player_guess
+        if not game_result:
+            print(f"Wrong guess! The number was: {self.secret_number}")
+        return game_result
