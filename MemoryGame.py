@@ -1,4 +1,5 @@
 import random
+import time
 from typing import List
 
 
@@ -8,6 +9,7 @@ class MemoryGame:
     seconds and then prompt them from the user for the numbers that he remember. If he was right
     with all the numbers the user will win otherwise he will lose.
     """
+    TIME_TO_MEMORIZE = 0.7
 
     def __init__(self, difficulty: int):
         self.difficulty = difficulty
@@ -47,5 +49,7 @@ class MemoryGame:
         :return: The result of the game: True- Win, False-Lose
         """
         self.generate_sequence()
+        print("Remember the sequence:" + str(self.sequence))
+        time.sleep(MemoryGame.TIME_TO_MEMORIZE)
         list_from_user = self.get_list_from_user()
         return self.is_list_equal(self.sequence, list_from_user)
