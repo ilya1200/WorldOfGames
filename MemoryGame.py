@@ -19,6 +19,11 @@ class MemoryGame:
         self.sequence = random.choices(range(1, 102), k=self.difficulty)
 
     def get_list_from_user(self) -> List[int]:
+        """
+        Get list of values represent the numbers the user remember
+
+        :return: list of the values user remembered
+        """
         while True:
             try:
                 player_values = input(f"Enter the numbers separated with space:").split()
