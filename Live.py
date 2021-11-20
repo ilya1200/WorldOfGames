@@ -1,4 +1,6 @@
 from typing import List, Dict
+
+from Games.CurrencyRouletteGame import CurrencyRouletteGame
 from Games.GuessGame import GuessGame
 from Games.MemoryGame import MemoryGame
 
@@ -104,7 +106,7 @@ def load_game():
     elif chosen_game['name'] == "Guess Game":
         game = GuessGame(chosen_difficulty_level)
     elif chosen_game['name'] == "Currency Roulette":
-        pass
+        game = CurrencyRouletteGame(chosen_difficulty_level)
     else:
         raise ValueError(f"The game:{chosen_game['name']} is undefined")
 

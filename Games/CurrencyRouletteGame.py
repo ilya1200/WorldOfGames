@@ -1,6 +1,8 @@
 import random
 from typing import Tuple
 
+import requests
+
 
 class CurrencyRouletteGame:
     """
@@ -22,17 +24,22 @@ class CurrencyRouletteGame:
         while True:
             try:
                 player_guess = round(float(input(f"If I to convert USD {self.usd_amount} to ILS, I will get :")), 2)
-            except ValueError as e:
+            except ValueError:
                 print(f"Bad input expected a float with 2 digits")
                 continue
             else:
                 return player_guess
 
     def play(self):
+        def get_rate(from_currency: str, to_currency: str) -> float:
+            RATES_API_URL = f'https://api.exchangerate-api.com/v4/latest/{from_currency.upper()}'
+            r = requests.get(RATES_API_URL)
+            rates = r.json()['rates']
+            return round(float(rates[to_currency.upper()]), 2)
+
+        USD_TO_ILS_RATE = get_rate("USD", "ILS")
         self.usd_amount = random.randint(1, 100)
-        USD_TO_ILS_RATE = 3.5
 
         money_interval = self.get_money_interval(USD_TO_ILS_RATE)
         user_guess = self.get_guess_from_user()
         return user_guess in money_interval
-
