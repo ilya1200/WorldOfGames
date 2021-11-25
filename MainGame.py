@@ -3,7 +3,9 @@ import os
 from Live import load_game, welcome
 import logging
 
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+from Consts import ROOT_DIR
+from Live import load_game, welcome
+
 PATH_TO_LOG_FILE = f'{ROOT_DIR}//Logs/wog.log'
 LOGGER_FORMAT = '[%(levelno)s %(levelname)s][%(asctime)s][%(process)d %(processName)s %(thread)d %(threadName)s][%(filename)s %(lineno)d]%(message)s'
 
