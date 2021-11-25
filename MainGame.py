@@ -1,6 +1,3 @@
-import os
-
-from Live import load_game, welcome
 import logging
 
 from Consts import ROOT_DIR
@@ -19,5 +16,8 @@ if __name__ == '__main__':
     WELCOME_MESSAGE = welcome(PLAYER_NAME)
     logging.info(WELCOME_MESSAGE)
     print(WELCOME_MESSAGE)
+
+    logging.info("Game to be loaded")
     load_game()
+
     logging.info("WoG Finished")
