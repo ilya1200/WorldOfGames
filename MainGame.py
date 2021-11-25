@@ -1,23 +1,26 @@
 import logging
 
-from Consts import ROOT_DIR
+from Consts import LOGGING_FORMAT, PATH_TO_LOG_FILE
 from Live import load_game, welcome
 
-PATH_TO_LOG_FILE = f'{ROOT_DIR}//Logs/wog.log'
-LOGGER_FORMAT = '[%(levelno)s %(levelname)s][%(asctime)s][%(process)d %(processName)s %(thread)d %(threadName)s][%(filename)s %(lineno)d]%(message)s'
-
-logging.basicConfig(filename=PATH_TO_LOG_FILE, level=logging.DEBUG,
-                    format=LOGGER_FORMAT)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+formatter = logging.Formatter(LOGGING_FORMAT)
+file_handler = logging.FileHandler(PATH_TO_LOG_FILE)
+file_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
 
 if __name__ == '__main__':
+    logger.info("WoG Run")
+
     PLAYER_NAME = "Ilya"
-    logging.debug(f"Player name {PLAYER_NAME}")
+    logger.debug(f"Player name {PLAYER_NAME}")
 
     WELCOME_MESSAGE = welcome(PLAYER_NAME)
-    logging.info(WELCOME_MESSAGE)
+    logger.debug(WELCOME_MESSAGE)
     print(WELCOME_MESSAGE)
 
-    logging.info("Game to be loaded")
+    logger.debug("Game to be loaded")
     load_game()
 
-    logging.info("WoG Finished")
+    logger.info("WoG Finished")
