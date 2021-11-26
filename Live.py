@@ -24,7 +24,7 @@ def load_game():
         :return: List of details about all games
         """
         logger.debug("Trying to get games")
-        games = [
+        games: List[Dict] = [
             {
                 "name": "Memory Game",
                 "description": "a sequence of numbers will appear for 1 second and you have to\nguess it back",
@@ -55,12 +55,15 @@ def load_game():
         :return: The chosen game data
         :raise ValueError: If invalid or not existing game number provided by player
         """
-        player_prompt = "Please choose a game to play:\n"
+        player_prompt: str = "Please choose a game to play:\n"
         for index, game in enumerate(games):
             game_number = index + 1
             player_prompt += f"\t{game_number}.{game['name']} - {game['description']}\n"
 
-        game_number = int(input(player_prompt))
+        player_input: str = input(player_prompt)
+        logger.debug(f'Player input: {player_input}')
+
+        game_number: int = int(player_input)
         logger.debug(f'Player ask for game number: {game_number}')
 
         if game_number not in range(1, len(games) + 1):
@@ -68,8 +71,8 @@ def load_game():
             logger.error(ERR_MSG)
             raise ValueError(ERR_MSG)
 
-        game_index = game_number - 1
-        CHOSEN_GAME = games[game_index]
+        game_index: int = game_number - 1
+        CHOSEN_GAME: dict = games[game_index]
         logger.debug(f'A game with the requested number: {game_number} is found {CHOSEN_GAME}')
 
         return CHOSEN_GAME
@@ -83,20 +86,22 @@ def load_game():
         :return: The chosen level
         :raise ValueError: If player doesnt provide a number that represent a level between the easiest(include) and hardest(include) level
         """
+        difficulty_level_input: str = input(f"Please choose game difficulty from {easiest} to {hardest}:")
+        logger.debug(f'Player input for difficulty level: {difficulty_level_input}')
 
-        difficulty_level = int(input(f"Please choose game difficulty from {easiest} to {hardest}:"))
+        difficulty_level: int = int(difficulty_level_input)
         logger.debug(f'Player request for difficulty level: {difficulty_level}')
 
         if not (easiest <= difficulty_level <= hardest):
-            ERR_MSG = f"Expected game difficulty from {easiest} to {hardest} but got {difficulty_level}"
+            ERR_MSG: str = f"Expected game difficulty from {easiest} to {hardest} but got {difficulty_level}"
             logger.error(ERR_MSG)
             raise ValueError(ERR_MSG)
 
         logger.debug(f'Player chose difficulty level: {difficulty_level}')
         return difficulty_level
 
-    chosen_game = None
-    chosen_difficulty_level = None
+    chosen_game: dict = None
+    chosen_difficulty_level: int = None
     game_menu = {
         "Currency Roulette": CurrencyRouletteGame,
         "Guess Game": GuessGame,
@@ -107,7 +112,7 @@ def load_game():
         "lose": "Game lost"
     }
 
-    all_games = get_games()
+    all_games: List[Dict] = get_games()
     logger.debug(f'Games data: {all_games}')
 
     logger.info(f"Prompt player to choose game from {list(map(lambda game: game['name'], all_games))}")
@@ -145,8 +150,8 @@ def load_game():
     else:
         logger.info(f"Player is about to play:{chosen_game['name']}")
 
-    is_win = game.play()
-    game_status = "win" if is_win else "lose"
+    is_win: bool = game.play()
+    game_status: str = "win" if is_win else "lose"
 
     logger.info(f"Player finished and {game_status} the game {chosen_game['name']}")
     logger.debug(f"Player should see the message: {game_over_messages[game_status]}")
