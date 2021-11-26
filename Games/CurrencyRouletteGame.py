@@ -50,16 +50,24 @@ class CurrencyRouletteGame:
                 return player_guess
 
     def play(self) -> bool:
+        logger.info("Player playing CurrencyRouletteGame")
+
         USD_TO_ILS_RATE: float = self._get_rate("USD", "ILS")
         AMOUNT: int = random.randint(1, 100)
 
         money_interval: tuple = self.get_money_interval(AMOUNT, USD_TO_ILS_RATE)
-        user_guess: float = self.get_guess_from_user(AMOUNT)
+        logger.info(f"A money interval generated: {money_interval}")
 
-        is_win: bool = user_guess in money_interval
+        player_guess: float = self.get_guess_from_user(AMOUNT)
+        logger.info(f"Player apply guess: {player_guess}")
+
+        is_win: bool = player_guess in money_interval
         if is_win:
-            print("Your guess {user_guess} is correct!")
+            logger.info(f"Players guess {player_guess} is correct.")
+            print(f"Your guess {player_guess} is correct!")
         else:
-            print(f"Wrong guess! Your guess {user_guess} is not in the interval: {money_interval}.")
+            logger.info(f"Players guess {player_guess} is wrong. The interval was: {money_interval}.")
+            print(f"Wrong guess! Your guess {player_guess} is not in the interval: {money_interval}.")
 
+        logger.info(f"Did player win the game: {is_win}")
         return is_win
