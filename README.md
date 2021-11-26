@@ -1,7 +1,7 @@
 # WorldOfGames
 This is a project I am writing as a part of a DevOps Course at DevOps Experts College.
 
-A player can choose and play a game (in the console).
+A player can play a chosen game in the console.
 
 # Games
   1. Memory Game - a sequence of numbers will appear for 1 second and you have to guess it back
