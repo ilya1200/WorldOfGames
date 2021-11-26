@@ -86,6 +86,7 @@ class GuessGame(Game):
                 logger.debug("Done waiting for threads")
                 break
 
+        player_guess = que.get()
         logger.info(f"A secret number generated: {self.secret_number}")
         logger.info(f"Player apply guess: {player_guess}")
 
