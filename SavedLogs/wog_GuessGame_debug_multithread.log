@@ -1,0 +1,47 @@
+[20 INFO][__main__][2021-11-27 00:32:31,764][4769 MainProcess 140120041256768 MainThread][MainGame.py <module> 14]::	WoG Run
+[20 INFO][Live][2021-11-27 00:32:31,765][4769 MainProcess 140120041256768 MainThread][Live.py load_game 119]::	Games is loading...
+[20 INFO][Live][2021-11-27 00:32:31,765][4769 MainProcess 140120041256768 MainThread][Live.py load_game 128]::	Prompt player to choose game from ['Memory Game', 'Guess Game', 'Currency Roulette']
+[20 INFO][Live][2021-11-27 00:32:35,830][4769 MainProcess 140120041256768 MainThread][Live.py load_game 137]::	Player chose the game: Guess Game
+[20 INFO][Live][2021-11-27 00:32:35,830][4769 MainProcess 140120041256768 MainThread][Live.py load_game 140]::	Prompt player to choose difficulty level from 1 to 5
+[20 INFO][Live][2021-11-27 00:32:40,029][4769 MainProcess 140120041256768 MainThread][Live.py load_game 152]::	Player chose difficulty level: 5
+[20 INFO][Live][2021-11-27 00:32:40,029][4769 MainProcess 140120041256768 MainThread][Live.py load_game 161]::	Player is about to play:Guess Game
+[20 INFO][Games.GuessGame][2021-11-27 00:32:40,029][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 66]::	Player playing GuessGame
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:40,029][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 75]::	Thread ApplyGuessThread is about to start
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:40,030][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 77]::	Thread 140119981090560-ApplyGuessThread started to run
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:40,030][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 75]::	Thread GenerateNumberThread is about to start
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:40,030][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 77]::	Thread 140119972697856-GenerateNumberThread started to run
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:40,030][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 83]::	Waiting for these Threads to finish: ['140119981090560-ApplyGuessThread', '140119972697856-GenerateNumberThread']
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:40,031][4769 MainProcess 140119972697856 GenerateNumberThread][GuessGame.py generate_number 33]::	Generated secret number: 1
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:40,531][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 83]::	Waiting for these Threads to finish: ['140119981090560-ApplyGuessThread']
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:41,031][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 83]::	Waiting for these Threads to finish: ['140119981090560-ApplyGuessThread']
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:41,532][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 83]::	Waiting for these Threads to finish: ['140119981090560-ApplyGuessThread']
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:42,032][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 83]::	Waiting for these Threads to finish: ['140119981090560-ApplyGuessThread']
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:42,533][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 83]::	Waiting for these Threads to finish: ['140119981090560-ApplyGuessThread']
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:43,034][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 83]::	Waiting for these Threads to finish: ['140119981090560-ApplyGuessThread']
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:43,535][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 83]::	Waiting for these Threads to finish: ['140119981090560-ApplyGuessThread']
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:43,919][4769 MainProcess 140119981090560 ApplyGuessThread][GuessGame.py get_guess_from_user 45]::	Player input: 6
+[40 ERROR][Games.GuessGame][2021-11-27 00:32:43,919][4769 MainProcess 140119981090560 ApplyGuessThread][GuessGame.py get_guess_from_user 52]::	Bad input expected a number between 1 to 5, but got 6
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:44,036][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 83]::	Waiting for these Threads to finish: ['140119981090560-ApplyGuessThread']
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:44,537][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 83]::	Waiting for these Threads to finish: ['140119981090560-ApplyGuessThread']
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:45,037][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 83]::	Waiting for these Threads to finish: ['140119981090560-ApplyGuessThread']
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:45,538][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 83]::	Waiting for these Threads to finish: ['140119981090560-ApplyGuessThread']
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:46,038][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 83]::	Waiting for these Threads to finish: ['140119981090560-ApplyGuessThread']
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:46,539][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 83]::	Waiting for these Threads to finish: ['140119981090560-ApplyGuessThread']
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:47,039][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 83]::	Waiting for these Threads to finish: ['140119981090560-ApplyGuessThread']
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:47,236][4769 MainProcess 140119981090560 ApplyGuessThread][GuessGame.py get_guess_from_user 45]::	Player input: l
+[40 ERROR][Games.GuessGame][2021-11-27 00:32:47,236][4769 MainProcess 140119981090560 ApplyGuessThread][GuessGame.py get_guess_from_user 52]::	Bad input expected a number between 1 to 5, but got l
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:47,539][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 83]::	Waiting for these Threads to finish: ['140119981090560-ApplyGuessThread']
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:48,040][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 83]::	Waiting for these Threads to finish: ['140119981090560-ApplyGuessThread']
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:48,541][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 83]::	Waiting for these Threads to finish: ['140119981090560-ApplyGuessThread']
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:49,042][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 83]::	Waiting for these Threads to finish: ['140119981090560-ApplyGuessThread']
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:49,542][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 83]::	Waiting for these Threads to finish: ['140119981090560-ApplyGuessThread']
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:50,043][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 83]::	Waiting for these Threads to finish: ['140119981090560-ApplyGuessThread']
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:50,494][4769 MainProcess 140119981090560 ApplyGuessThread][GuessGame.py get_guess_from_user 45]::	Player input: 2
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:50,494][4769 MainProcess 140119981090560 ApplyGuessThread][GuessGame.py get_guess_from_user 56]::	Player guess: 2
+[10 DEBUG][Games.GuessGame][2021-11-27 00:32:50,543][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 86]::	Done waiting for threads
+[20 INFO][Games.GuessGame][2021-11-27 00:32:50,543][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 89]::	A secret number generated: 1
+[20 INFO][Games.GuessGame][2021-11-27 00:32:50,544][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 90]::	Player apply guess: None
+[20 INFO][Games.GuessGame][2021-11-27 00:32:50,544][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 96]::	Players guess None is wrong. The number was: 1.
+[20 INFO][Games.GuessGame][2021-11-27 00:32:50,544][4769 MainProcess 140120041256768 MainThread][GuessGame.py play 99]::	Did player win the game: False
+[20 INFO][Live][2021-11-27 00:32:50,544][4769 MainProcess 140120041256768 MainThread][Live.py load_game 166]::	Player finished and lose the game Guess Game
+[20 INFO][__main__][2021-11-27 00:32:50,544][4769 MainProcess 140120041256768 MainThread][MainGame.py <module> 26]::	WoG Finished
