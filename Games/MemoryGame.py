@@ -81,8 +81,9 @@ class MemoryGame:
         sequence_to_memorize: List[int] = self.generate_sequence()
         logger.info(f"A sequence to memorize generated: {sequence_to_memorize}")
 
-        print("Remember the sequence:" + str(sequence_to_memorize))
+        print('\r', "Remember the sequence:" + str(sequence_to_memorize), end='')
         time.sleep(MemoryGame.TIME_TO_MEMORIZE)
+        print('\r', '', end='')  # clear the sequence from the console
 
         list_from_user: List[int] = self.get_list_from_user()
         logger.info(f"Player remembered: {list_from_user}")
