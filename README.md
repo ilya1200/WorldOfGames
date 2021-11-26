@@ -11,6 +11,9 @@ A player can play a chosen game in the console.
 # Installation
   1. pip install -r requirements.txt
 
+# Notes
+* This project using Multithreading.If you run this with PyCharm, allow parallel run for MainGame.py in Run/Debug Configurations
+
   
 
 
