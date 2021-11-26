@@ -1,7 +1,18 @@
+import logging
 import random
-from typing import Tuple
-
 import requests
+from typing import Tuple, Dict
+
+from requests import Response
+
+from Consts import LOGGING_FORMAT, PATH_TO_LOG_FILE
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+formatter = logging.Formatter(LOGGING_FORMAT)
+file_handler = logging.FileHandler(PATH_TO_LOG_FILE)
+file_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
 
 
 class CurrencyRouletteGame:
@@ -13,33 +24,42 @@ class CurrencyRouletteGame:
     """
 
     def __init__(self, difficulty: int):
-        self.difficulty = difficulty
+        self.difficulty: int = difficulty
 
-    def get_money_interval(self, currency_rate: float) -> Tuple[float, float]:
-        d = self.difficulty
-        t = self.usd_amount * currency_rate
+    def _get_rate(self, from_currency: str, to_currency: str) -> float:
+        RATES_API_URL: str = f'https://api.exchangerate-api.com/v4/latest/{from_currency.upper()}'
+        response: Response = requests.get(RATES_API_URL)
+        rates: Dict[str] = response.json()['rates']
+        return round(float(rates[to_currency.upper()]), 2)
+
+    def get_money_interval(self, amount: int, currency_rate: float) -> Tuple[float, float]:
+        d: int = self.difficulty
+        t: float = amount * currency_rate
         return t - (5 - d), t + (5 - d)
 
-    def get_guess_from_user(self) -> float:
+    def get_guess_from_user(self, amount: int) -> float:
         while True:
+            player_input: str = None
             try:
-                player_guess = round(float(input(f"If I to convert USD {self.usd_amount} to ILS, I will get :")), 2)
+                player_input = input(f"If I to convert USD {amount} to ILS, I will get :")
+                player_guess: float = round(float(player_input), 2)
             except ValueError:
-                print(f"Bad input expected a float with 2 digits")
+                print(f"Bad input expected a float with 2 digits, but got: {player_input}")
                 continue
             else:
                 return player_guess
 
-    def play(self):
-        def get_rate(from_currency: str, to_currency: str) -> float:
-            RATES_API_URL = f'https://api.exchangerate-api.com/v4/latest/{from_currency.upper()}'
-            r = requests.get(RATES_API_URL)
-            rates = r.json()['rates']
-            return round(float(rates[to_currency.upper()]), 2)
+    def play(self) -> bool:
+        USD_TO_ILS_RATE: float = self._get_rate("USD", "ILS")
+        AMOUNT: int = random.randint(1, 100)
 
-        USD_TO_ILS_RATE = get_rate("USD", "ILS")
-        self.usd_amount = random.randint(1, 100)
+        money_interval: tuple = self.get_money_interval(AMOUNT, USD_TO_ILS_RATE)
+        user_guess: float = self.get_guess_from_user(AMOUNT)
 
-        money_interval = self.get_money_interval(USD_TO_ILS_RATE)
-        user_guess = self.get_guess_from_user()
-        return user_guess in money_interval
+        is_win: bool = user_guess in money_interval
+        if is_win:
+            print("Your guess {user_guess} is correct!")
+        else:
+            print(f"Wrong guess! Your guess {user_guess} is not in the interval: {money_interval}.")
+
+        return is_win
