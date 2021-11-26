@@ -1,5 +1,9 @@
 import logging
 import random
+import threading
+from queue import Queue
+from threading import Thread
+from typing import List
 
 from Consts import LOGGING_FORMAT, PATH_TO_LOG_FILE
 from Interfaces.Game import Game
@@ -39,9 +43,12 @@ class GuessGame(Game):
             try:
                 player_input = input(f"Guess a number between 1 to {self.difficulty}:")
                 logger.debug(f'Player input: {player_input}')
-                player_guess = int(player_input)
+                player_guess: int = int(player_input)
+                if not 1 <= player_guess <= self.difficulty:
+                    raise ValueError(f'Players guess is outside the range from 1 to {self.difficulty}')
+
             except ValueError:
-                ERR_MSG = f"Bad input expected a number between 1 to {self.difficulty}, but got {player_input}"
+                ERR_MSG: str = f"Bad input expected a number between 1 to {self.difficulty}, but got {player_input}"
                 logger.error(ERR_MSG)
                 print(ERR_MSG)
                 continue
@@ -57,11 +64,29 @@ class GuessGame(Game):
         """
 
         logger.info("Player playing GuessGame")
+        player_guess: int = None
+        que: Queue[int] = Queue()
+        threads: List[Thread] = [
+            Thread(name="ApplyGuessThread", target=lambda q: q.put(self.get_guess_from_user()), args=(que,)),
+            Thread(name="GenerateNumberThread", target=self.generate_number),
+        ]
 
-        self.generate_number()
+        for thread in threads:
+            logger.debug(f"Thread {thread.name} is about to start")
+            thread.start()
+            logger.debug(f"Thread {thread.ident}-{thread.name} started to run")
+
+        while True:
+            alive_threads: List[Thread] = list(filter(lambda thread: thread.is_alive(), threads))
+            is_any_thread_alive = any(alive_threads)
+            if is_any_thread_alive:
+                logger.debug(f"Waiting for these Threads to finish: {list(map(lambda alive_thread: f'{alive_thread.ident}-{alive_thread.name}', alive_threads))}")
+                threading.Event().wait(0.5)
+            else:
+                logger.debug("Done waiting for threads")
+                break
+
         logger.info(f"A secret number generated: {self.secret_number}")
-
-        player_guess = self.get_guess_from_user()
         logger.info(f"Player apply guess: {player_guess}")
 
         is_win = self.secret_number == player_guess
