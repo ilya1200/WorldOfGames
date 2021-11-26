@@ -2,6 +2,7 @@ import logging
 import random
 
 from Consts import LOGGING_FORMAT, PATH_TO_LOG_FILE
+from Interfaces.Game import Game
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -11,7 +12,7 @@ file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
 
-class GuessGame:
+class GuessGame(Game):
     """
     The purpose of guess game is to start a new game, cast a random number between 1 to a
     variable called difficulty. The game will get a number input from the

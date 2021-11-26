@@ -6,6 +6,7 @@ from typing import Tuple, Dict
 from requests import Response
 
 from Consts import LOGGING_FORMAT, PATH_TO_LOG_FILE
+from Interfaces.Game import Game
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -15,7 +16,7 @@ file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
 
-class CurrencyRouletteGame:
+class CurrencyRouletteGame(Game):
     """
     This game will use t he free currency api to get the current exchange rate from USD to ILS, will
     generate a new random number between 1-100 a will ask the user what he thinks is the value of

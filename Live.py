@@ -5,6 +5,7 @@ from Consts import LOGGING_FORMAT, PATH_TO_LOG_FILE
 from Games.CurrencyRouletteGame import CurrencyRouletteGame
 from Games.GuessGame import GuessGame
 from Games.MemoryGame import MemoryGame
+from Interfaces.Game import Game
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -15,7 +16,7 @@ logger.addHandler(file_handler)
 
 
 class Live:
-    _game_menu = {
+    _game_menu: Dict[str, Game] = {
         "Currency Roulette": CurrencyRouletteGame,
         "Guess Game": GuessGame,
         "Memory Game": MemoryGame
@@ -151,7 +152,7 @@ class Live:
                 break
 
         try:
-            game = Live._game_menu[chosen_game['name']](chosen_difficulty_level)
+            game: Game = Live._game_menu[chosen_game['name']](chosen_difficulty_level)
         except KeyError:
             logger.error(f"The game:{chosen_game['name']} is not mapped to a game object in the dict games_menu")
             raise KeyError(f"The game:{chosen_game['name']} is undefined")
