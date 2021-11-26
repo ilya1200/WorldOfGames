@@ -14,12 +14,23 @@ file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
 
-def welcome(name: str) -> str:
-    return f"Hello {name} and welcome to the World of Games (WoG).\nHere you can find many cool games to play."
+class Live:
+    _game_menu = {
+        "Currency Roulette": CurrencyRouletteGame,
+        "Guess Game": GuessGame,
+        "Memory Game": MemoryGame
+    }
+    _game_over_messages = {
+        "win": "Congrats! You win!",
+        "lose": "Game lost"
+    }
 
+    @staticmethod
+    def welcome(name: str) -> str:
+        return f"Hello {name} and welcome to the World of Games (WoG).\nHere you can find many cool games to play."
 
-def load_game():
-    def get_games() -> List[Dict]:
+    @staticmethod
+    def _get_games() -> List[Dict]:
         """
         :return: List of details about all games
         """
@@ -47,7 +58,8 @@ def load_game():
         logger.debug(str(games))
         return games
 
-    def choose_game(games: List[Dict]) -> dict:
+    @staticmethod
+    def _choose_game(games: List[Dict]) -> dict:
         """
         Prompts the player to choose a game by number: 1,2,3,etc...
 
@@ -77,7 +89,8 @@ def load_game():
 
         return CHOSEN_GAME
 
-    def choose_difficulty_level(easiest: int, hardest: int) -> int:
+    @staticmethod
+    def _choose_difficulty_level(easiest: int, hardest: int) -> int:
         """
         Prompts the player to choose difficulty level from levels list
 
@@ -100,59 +113,54 @@ def load_game():
         logger.debug(f'Player chose difficulty level: {difficulty_level}')
         return difficulty_level
 
-    chosen_game: dict = None
-    chosen_difficulty_level: int = None
-    game_menu = {
-        "Currency Roulette": CurrencyRouletteGame,
-        "Guess Game": GuessGame,
-        "Memory Game": MemoryGame
-    }
-    game_over_messages = {
-        "win": "Congrats! You win!",
-        "lose": "Game lost"
-    }
+    @staticmethod
+    def load_game():
+        logger.info(f'Games is loading...')
 
-    all_games: List[Dict] = get_games()
-    logger.debug(f'Games data: {all_games}')
+        chosen_game: dict = None
+        chosen_difficulty_level: int = None
 
-    logger.info(f"Prompt player to choose game from {list(map(lambda game: game['name'], all_games))}")
-    while True:
+        all_games: List[Dict] = Live._get_games()
+        logger.debug(f'Games data: {all_games}')
+
+        logger.info(f"Prompt player to choose game from {list(map(lambda game: game['name'], all_games))}")
+        while True:
+            try:
+                chosen_game = Live._choose_game(all_games)
+            except ValueError as e:
+                logger.error(f'Player failed to choose a game, because of invalid input')
+                print(e)
+                continue
+            else:
+                logger.info(f"Player chose the game: {chosen_game['name']}")
+                break
+
+        logger.info(
+            f"Prompt player to choose difficulty level from {chosen_game['easiest_level']} to {chosen_game['hardest_level']}")
+        while True:
+            try:
+                chosen_difficulty_level = Live._choose_difficulty_level(chosen_game["easiest_level"],
+                                                                  chosen_game["hardest_level"])
+            except ValueError as e:
+                logger.error(
+                    f'Player failed to choose a difficulty level, because of invalid input')
+                print(e)
+                continue
+            else:
+                logger.info(f'Player chose difficulty level: {chosen_difficulty_level}')
+                break
+
         try:
-            chosen_game = choose_game(all_games)
-        except ValueError as e:
-            logger.error(f'Player failed to choose a game, because of invalid input')
-            print(e)
-            continue
+            game = Live._game_menu[chosen_game['name']](chosen_difficulty_level)
+        except KeyError:
+            logger.error(f"The game:{chosen_game['name']} is not mapped to a game object in the dict games_menu")
+            raise KeyError(f"The game:{chosen_game['name']} is undefined")
         else:
-            logger.info(f"Player chose the game: {chosen_game['name']}")
-            break
+            logger.info(f"Player is about to play:{chosen_game['name']}")
 
-    logger.info(
-        f"Prompt player to choose difficulty level from {chosen_game['easiest_level']} to {chosen_game['hardest_level']}")
-    while True:
-        try:
-            chosen_difficulty_level = choose_difficulty_level(chosen_game["easiest_level"],
-                                                              chosen_game["hardest_level"])
-        except ValueError as e:
-            logger.error(
-                f'Player failed to choose a difficulty level, because of invalid input')
-            print(e)
-            continue
-        else:
-            logger.info(f'Player chose difficulty level: {chosen_difficulty_level}')
-            break
+        is_win: bool = game.play()
+        game_status: str = "win" if is_win else "lose"
 
-    try:
-        game = game_menu[chosen_game['name']](chosen_difficulty_level)
-    except KeyError:
-        logger.error(f"The game:{chosen_game['name']} is not mapped to a game object in the dict games_menu")
-        raise KeyError(f"The game:{chosen_game['name']} is undefined")
-    else:
-        logger.info(f"Player is about to play:{chosen_game['name']}")
-
-    is_win: bool = game.play()
-    game_status: str = "win" if is_win else "lose"
-
-    logger.info(f"Player finished and {game_status} the game {chosen_game['name']}")
-    logger.debug(f"Player should see the message: {game_over_messages[game_status]}")
-    print(game_over_messages[game_status])
+        logger.info(f"Player finished and {game_status} the game {chosen_game['name']}")
+        logger.debug(f"Player should see the message: {Live._game_over_messages[game_status]}")
+        print(Live._game_over_messages[game_status])
