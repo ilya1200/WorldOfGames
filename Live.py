@@ -16,7 +16,7 @@ logger.addHandler(file_handler)
 
 
 class Live:
-    _game_menu: Dict[str, Game] = {
+    _game_menu: Dict[str, Game.__class__] = {
         "Currency Roulette": CurrencyRouletteGame,
         "Guess Game": GuessGame,
         "Memory Game": MemoryGame
@@ -120,6 +120,7 @@ class Live:
 
         chosen_game: dict = None
         chosen_difficulty_level: int = None
+        game: Game = None
 
         all_games: List[Dict] = Live._get_games()
         logger.debug(f'Games data: {all_games}')
@@ -152,7 +153,7 @@ class Live:
                 break
 
         try:
-            game: Game = Live._game_menu[chosen_game['name']](chosen_difficulty_level)
+            game = Live._game_menu[chosen_game['name']](chosen_difficulty_level)
         except KeyError:
             logger.error(f"The game:{chosen_game['name']} is not mapped to a game object in the dict games_menu")
             raise KeyError(f"The game:{chosen_game['name']} is undefined")
