@@ -34,11 +34,13 @@ class GuessGame:
         :return: an int in between 1 to difficulty, which represents the user guess
         """
         while True:
+            player_input: str = None
             try:
                 player_input = input(f"Guess a number between 1 to {self.difficulty}:")
+                logger.debug(f'Player input: {player_input}')
                 player_guess = int(player_input)
             except ValueError:
-                ERR_MSG = f"Bad input expected a number between 1 to {self.difficulty}, but got {player_guess}"
+                ERR_MSG = f"Bad input expected a number between 1 to {self.difficulty}, but got {player_input}"
                 logger.error(ERR_MSG)
                 print(ERR_MSG)
                 continue
@@ -62,11 +64,11 @@ class GuessGame:
         logger.info(f"Player apply guess: {player_guess}")
 
         is_win = self.secret_number == player_guess
-        if not is_win:
+        if is_win:
+            logger.info(f"Players guess {player_guess} is correct.")
+        else:
             logger.info(f"Players guess {player_guess} is wrong. The number was: {self.secret_number}.")
             print(f"Wrong guess! The number was: {self.secret_number}")
-        else:
-            logger.info(f"Players guess {player_guess} is correct.")
 
         logger.info(f"Did player win the game: {is_win}")
         return is_win
