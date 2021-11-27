@@ -3,7 +3,7 @@ import random
 import requests
 import threading
 from threading import Thread
-from typing import Tuple, Dict, List, Any
+from typing import Tuple, Dict, List, Any, Union
 
 from requests import Response
 
@@ -68,7 +68,7 @@ class CurrencyRouletteGame(Game):
         t: float = amount * currency_rate
         logger.debug(f't: {t}')
 
-        interval: Tuple[float, float] = t - (5 - d), t + (5 - d)
+        interval: Tuple[float, float] = round(t - (5 - d), 2), round(t + (5 - d), 2)
         logger.debug(f'calculated interval: {interval}')
 
         return interval
@@ -108,9 +108,13 @@ class CurrencyRouletteGame(Game):
         TO_CURRENCY: str = "ILS"
         AMOUNT: int = random.randint(1, 100)
 
-        threads_results: Dict[str, float] = {
+        CURRENCY_RATE: float
+        money_interval: tuple = tuple()
+
+        threads_results: Dict[str, Union[float, Tuple[float, float]]] = {
             "ApplyGuessThread": -1.0,
-            "CurrencyRateThread": -1.0
+            "CurrencyRateThread": -1.0,
+            "MoneyIntervalThread": tuple()
         }
 
         logger.debug(f"FROM_CURRENCY: {FROM_CURRENCY}")
@@ -122,10 +126,17 @@ class CurrencyRouletteGame(Game):
 
         threads: List[Thread] = [
             Thread(name="ApplyGuessThread",
-                   target=lambda: _store_thread_result(threads_results, "ApplyGuessThread", self.get_guess_from_user(AMOUNT))),
+                   target=lambda: _store_thread_result(threads_results, "ApplyGuessThread",
+                                                       self.get_guess_from_user(AMOUNT))),
             Thread(name="CurrencyRateThread",
-                   target=lambda: _store_thread_result(threads_results, "CurrencyRateThread", self._get_currency_rate(FROM_CURRENCY, TO_CURRENCY))),
+                   target=lambda: _store_thread_result(threads_results, "CurrencyRateThread",
+                                                       self._get_currency_rate(FROM_CURRENCY, TO_CURRENCY))),
         ]
+
+        money_interval_thread = Thread(name="MoneyIntervalThread",
+                                       target=lambda: _store_thread_result(threads_results, "MoneyIntervalThread",
+                                                                           self.get_money_interval(AMOUNT,
+                                                                                                   CURRENCY_RATE)))
 
         for thread in threads:
             logger.debug(f"Thread {thread.name} is about to start")
@@ -138,16 +149,28 @@ class CurrencyRouletteGame(Game):
             if is_any_thread_alive:
                 logger.debug(
                     f"Waiting for these Threads to finish: {list(map(lambda alive_thread: f'{alive_thread.ident}-{alive_thread.name}', alive_threads))}")
+
+                # Check if CurrencyRateThread finished (not alive), obtain the CURRENCY_RATE from it.
+                #   Then start MoneyIntervalThread to calculate the interval using CURRENCY_RATE (should happen only once, check if MoneyInterval is already updated)
+                # Anyway wait till all threads finished their job
+                currency_rate_thread = list(filter(lambda thread: thread.name == "CurrencyRateThread", threads))[0]
+                if not currency_rate_thread.is_alive() and not threads_results["MoneyIntervalThread"]:
+                    CURRENCY_RATE = threads_results["CurrencyRateThread"]
+                    logger.debug(f'{currency_rate_thread.ident}-{currency_rate_thread.name}  Finished. Can calculate the money interval while waiting for other threads to finish')
+                    logger.info(f"Got currency rate: {CURRENCY_RATE}")
+
+                    threads.append(money_interval_thread)
+                    logger.debug(f"Thread {money_interval_thread.name} is about to start")
+                    money_interval_thread.start()
+                    logger.debug(f"Thread {money_interval_thread.ident}-{money_interval_thread.name} started to run")
+
                 threading.Event().wait(0.5)
             else:
                 logger.debug("Done waiting for threads")
                 break
 
-        CURRENCY_RATE: float = threads_results["CurrencyRateThread"]
-        logger.info(f"Got the conversion rate from {FROM_CURRENCY} to {TO_CURRENCY} it is {CURRENCY_RATE}")
-
-        money_interval: tuple = self.get_money_interval(AMOUNT, CURRENCY_RATE)
-        logger.info(f"A money interval generated: {money_interval}")
+        money_interval = threads_results["MoneyIntervalThread"]
+        logger.info(f"Calculated money interval: {money_interval}")
 
         player_guess: float = threads_results["ApplyGuessThread"]
         logger.info(f"Player apply guess: {player_guess}")
