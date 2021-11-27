@@ -1,7 +1,9 @@
 import logging
 import random
 import requests
-from typing import Tuple, Dict
+import threading
+from threading import Thread
+from typing import Tuple, Dict, List, Any
 
 from requests import Response
 
@@ -9,7 +11,7 @@ from Consts import LOGGING_FORMAT, PATH_TO_LOG_FILE
 from Interfaces.Game import Game
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 formatter = logging.Formatter(LOGGING_FORMAT)
 file_handler = logging.FileHandler(PATH_TO_LOG_FILE)
 file_handler.setFormatter(formatter)
@@ -104,17 +106,50 @@ class CurrencyRouletteGame(Game):
         logger.info("Player playing CurrencyRouletteGame")
         FROM_CURRENCY: str = "USD"
         TO_CURRENCY: str = "ILS"
-
-        CURRENCY_RATE: float = self._get_currency_rate(FROM_CURRENCY, TO_CURRENCY)
-        logger.info(f"Got the conversion rate from {FROM_CURRENCY} to {TO_CURRENCY} it is {CURRENCY_RATE}")
-
         AMOUNT: int = random.randint(1, 100)
+
+        threads_results: Dict[str, float] = {
+            "ApplyGuessThread": -1.0,
+            "CurrencyRateThread": -1.0
+        }
+
+        logger.debug(f"FROM_CURRENCY: {FROM_CURRENCY}")
+        logger.debug(f"TO_CURRENCY: {TO_CURRENCY}")
         logger.debug(f"AMOUNT: {AMOUNT}")
+
+        def _store_thread_result(storage: Dict[str, Any], thread_name: str, value: Any):
+            storage[thread_name] = value
+
+        threads: List[Thread] = [
+            Thread(name="ApplyGuessThread",
+                   target=lambda: _store_thread_result(threads_results, "ApplyGuessThread", self.get_guess_from_user(AMOUNT))),
+            Thread(name="CurrencyRateThread",
+                   target=lambda: _store_thread_result(threads_results, "CurrencyRateThread", self._get_currency_rate(FROM_CURRENCY, TO_CURRENCY))),
+        ]
+
+        for thread in threads:
+            logger.debug(f"Thread {thread.name} is about to start")
+            thread.start()
+            logger.debug(f"Thread {thread.ident}-{thread.name} started to run")
+
+        while True:
+            alive_threads: List[Thread] = list(filter(lambda thread: thread.is_alive(), threads))
+            is_any_thread_alive = any(alive_threads)
+            if is_any_thread_alive:
+                logger.debug(
+                    f"Waiting for these Threads to finish: {list(map(lambda alive_thread: f'{alive_thread.ident}-{alive_thread.name}', alive_threads))}")
+                threading.Event().wait(0.5)
+            else:
+                logger.debug("Done waiting for threads")
+                break
+
+        CURRENCY_RATE: float = threads_results["CurrencyRateThread"]
+        logger.info(f"Got the conversion rate from {FROM_CURRENCY} to {TO_CURRENCY} it is {CURRENCY_RATE}")
 
         money_interval: tuple = self.get_money_interval(AMOUNT, CURRENCY_RATE)
         logger.info(f"A money interval generated: {money_interval}")
 
-        player_guess: float = self.get_guess_from_user(AMOUNT)
+        player_guess: float = threads_results["ApplyGuessThread"]
         logger.info(f"Player apply guess: {player_guess}")
 
         is_win: bool = money_interval[0] <= player_guess <= money_interval[1]
