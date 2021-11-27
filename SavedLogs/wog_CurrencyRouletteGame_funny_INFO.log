@@ -1,0 +1,19 @@
+[20 INFO][__main__][2021-11-27 10:41:53,839][4964 MainProcess 140452669511488 MainThread][MainGame.py <module> 14]::	WoG Run
+[20 INFO][Live][2021-11-27 10:41:53,844][4964 MainProcess 140452669511488 MainThread][Live.py load_game 119]::	Games is loading...
+[20 INFO][Live][2021-11-27 10:41:53,844][4964 MainProcess 140452669511488 MainThread][Live.py load_game 128]::	Prompt player to choose game from ['Memory Game', 'Guess Game', 'Currency Roulette']
+[40 ERROR][Live][2021-11-27 10:42:00,816][4964 MainProcess 140452669511488 MainThread][Live.py load_game 133]::	Player failed to choose a game, because of invalid input
+[20 INFO][Live][2021-11-27 10:42:03,229][4964 MainProcess 140452669511488 MainThread][Live.py load_game 137]::	Player chose the game: Currency Roulette
+[20 INFO][Live][2021-11-27 10:42:03,230][4964 MainProcess 140452669511488 MainThread][Live.py load_game 140]::	Prompt player to choose difficulty level from 1 to 5
+[40 ERROR][Live][2021-11-27 10:42:05,842][4964 MainProcess 140452669511488 MainThread][Live.py load_game 147]::	Player failed to choose a difficulty level, because of invalid input
+[20 INFO][Live][2021-11-27 10:42:10,817][4964 MainProcess 140452669511488 MainThread][Live.py load_game 152]::	Player chose difficulty level: 2
+[20 INFO][Live][2021-11-27 10:42:10,817][4964 MainProcess 140452669511488 MainThread][Live.py load_game 161]::	Player is about to play:Currency Roulette
+[20 INFO][Games.CurrencyRouletteGame][2021-11-27 10:42:10,818][4964 MainProcess 140452669511488 MainThread][CurrencyRouletteGame.py play 106]::	Player playing CurrencyRouletteGame
+[20 INFO][Games.CurrencyRouletteGame][2021-11-27 10:42:11,819][4964 MainProcess 140452669511488 MainThread][CurrencyRouletteGame.py play 160]::	Got currency rate: 3.18
+[40 ERROR][Games.CurrencyRouletteGame][2021-11-27 10:44:42,386][4964 MainProcess 140452535723776 ApplyGuessThread][CurrencyRouletteGame.py get_guess_from_user 92]::	Bad input expected a float with 2 digits, but got: not much these days...ILS is a strong currency, isn't it?
+[40 ERROR][Games.CurrencyRouletteGame][2021-11-27 10:45:13,439][4964 MainProcess 140452535723776 ApplyGuessThread][CurrencyRouletteGame.py get_guess_from_user 92]::	Bad input expected a float with 2 digits, but got: ok ok it is 300 maybe
+[20 INFO][Games.CurrencyRouletteGame][2021-11-27 10:45:22,488][4964 MainProcess 140452669511488 MainThread][CurrencyRouletteGame.py play 173]::	Calculated money interval: (286.38, 292.38)
+[20 INFO][Games.CurrencyRouletteGame][2021-11-27 10:45:22,488][4964 MainProcess 140452669511488 MainThread][CurrencyRouletteGame.py play 176]::	Player apply guess: 321.0
+[20 INFO][Games.CurrencyRouletteGame][2021-11-27 10:45:22,488][4964 MainProcess 140452669511488 MainThread][CurrencyRouletteGame.py play 183]::	Players guess 321.0 is wrong. It is outside interval: (286.38, 292.38).
+[20 INFO][Games.CurrencyRouletteGame][2021-11-27 10:45:22,489][4964 MainProcess 140452669511488 MainThread][CurrencyRouletteGame.py play 186]::	Did player win the game: False
+[20 INFO][Live][2021-11-27 10:45:22,489][4964 MainProcess 140452669511488 MainThread][Live.py load_game 166]::	Player finished and lose the game Currency Roulette
+[20 INFO][__main__][2021-11-27 10:45:22,489][4964 MainProcess 140452669511488 MainThread][MainGame.py <module> 26]::	WoG Finished

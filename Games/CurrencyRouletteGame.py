@@ -11,7 +11,7 @@ from Consts import LOGGING_FORMAT, PATH_TO_LOG_FILE
 from Interfaces.Game import Game
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 formatter = logging.Formatter(LOGGING_FORMAT)
 file_handler = logging.FileHandler(PATH_TO_LOG_FILE)
 file_handler.setFormatter(formatter)
