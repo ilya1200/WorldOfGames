@@ -13,6 +13,7 @@ A player can play a chosen game in the console.
 
 # Notes
 * This project using Multithreading.If you run this with PyCharm, allow parallel run for MainGame.py in Run/Debug Configurations
+* Have a look at DemoLogs
 
   
 
