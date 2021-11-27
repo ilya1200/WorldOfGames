@@ -1,0 +1,14 @@
+[20 INFO][__main__][2021-11-27 00:48:06,870][5055 MainProcess 140462364301120 MainThread][MainGame.py <module> 14]::	WoG Run
+[20 INFO][Live][2021-11-27 00:48:06,870][5055 MainProcess 140462364301120 MainThread][Live.py load_game 119]::	Games is loading...
+[20 INFO][Live][2021-11-27 00:48:06,870][5055 MainProcess 140462364301120 MainThread][Live.py load_game 128]::	Prompt player to choose game from ['Memory Game', 'Guess Game', 'Currency Roulette']
+[20 INFO][Live][2021-11-27 00:48:10,252][5055 MainProcess 140462364301120 MainThread][Live.py load_game 137]::	Player chose the game: Guess Game
+[20 INFO][Live][2021-11-27 00:48:10,252][5055 MainProcess 140462364301120 MainThread][Live.py load_game 140]::	Prompt player to choose difficulty level from 1 to 5
+[20 INFO][Live][2021-11-27 00:48:14,942][5055 MainProcess 140462364301120 MainThread][Live.py load_game 152]::	Player chose difficulty level: 3
+[20 INFO][Live][2021-11-27 00:48:14,943][5055 MainProcess 140462364301120 MainThread][Live.py load_game 161]::	Player is about to play:Guess Game
+[20 INFO][Games.GuessGame][2021-11-27 00:48:14,943][5055 MainProcess 140462364301120 MainThread][GuessGame.py play 66]::	Player playing GuessGame
+[20 INFO][Games.GuessGame][2021-11-27 00:48:16,946][5055 MainProcess 140462364301120 MainThread][GuessGame.py play 90]::	A secret number generated: 3
+[20 INFO][Games.GuessGame][2021-11-27 00:48:16,946][5055 MainProcess 140462364301120 MainThread][GuessGame.py play 91]::	Player apply guess: 2
+[20 INFO][Games.GuessGame][2021-11-27 00:48:16,946][5055 MainProcess 140462364301120 MainThread][GuessGame.py play 97]::	Players guess 2 is wrong. The number was: 3.
+[20 INFO][Games.GuessGame][2021-11-27 00:48:16,946][5055 MainProcess 140462364301120 MainThread][GuessGame.py play 100]::	Did player win the game: False
+[20 INFO][Live][2021-11-27 00:48:16,946][5055 MainProcess 140462364301120 MainThread][Live.py load_game 166]::	Player finished and lose the game Guess Game
+[20 INFO][__main__][2021-11-27 00:48:16,946][5055 MainProcess 140462364301120 MainThread][MainGame.py <module> 26]::	WoG Finished

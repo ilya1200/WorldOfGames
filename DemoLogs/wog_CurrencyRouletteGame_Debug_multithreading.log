@@ -1,0 +1,64 @@
+[20 INFO][__main__][2021-11-27 10:30:35,438][4762 MainProcess 139901065197376 MainThread][MainGame.py <module> 14]::	WoG Run
+[20 INFO][Live][2021-11-27 10:30:35,440][4762 MainProcess 139901065197376 MainThread][Live.py load_game 119]::	Games is loading...
+[20 INFO][Live][2021-11-27 10:30:35,441][4762 MainProcess 139901065197376 MainThread][Live.py load_game 128]::	Prompt player to choose game from ['Memory Game', 'Guess Game', 'Currency Roulette']
+[20 INFO][Live][2021-11-27 10:30:41,008][4762 MainProcess 139901065197376 MainThread][Live.py load_game 137]::	Player chose the game: Currency Roulette
+[20 INFO][Live][2021-11-27 10:30:41,009][4762 MainProcess 139901065197376 MainThread][Live.py load_game 140]::	Prompt player to choose difficulty level from 1 to 5
+[20 INFO][Live][2021-11-27 10:30:45,242][4762 MainProcess 139901065197376 MainThread][Live.py load_game 152]::	Player chose difficulty level: 3
+[20 INFO][Live][2021-11-27 10:30:45,242][4762 MainProcess 139901065197376 MainThread][Live.py load_game 161]::	Player is about to play:Currency Roulette
+[20 INFO][Games.CurrencyRouletteGame][2021-11-27 10:30:45,242][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 106]::	Player playing CurrencyRouletteGame
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:45,242][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 120]::	FROM_CURRENCY: USD
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:45,242][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 121]::	TO_CURRENCY: ILS
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:45,242][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 122]::	AMOUNT: 23
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:45,243][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 142]::	Thread ApplyGuessThread is about to start
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:45,243][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 144]::	Thread 139901005031168-ApplyGuessThread started to run
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:45,243][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 142]::	Thread CurrencyRateThread is about to start
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:45,244][4762 MainProcess 139900996638464 CurrencyRateThread][CurrencyRouletteGame.py _get_currency_rate 40]::	from_currency:USD
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:45,244][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 144]::	Thread 139900996638464-CurrencyRateThread started to run
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:45,244][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread', '139900996638464-CurrencyRateThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:45,244][4762 MainProcess 139900996638464 CurrencyRateThread][CurrencyRouletteGame.py _get_currency_rate 41]::	to_currency:ILS
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:45,244][4762 MainProcess 139900996638464 CurrencyRateThread][CurrencyRouletteGame.py _get_currency_rate 45]::	Getting rates from RATES_API at URL: https://api.exchangerate-api.com/v4/latest/USD
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:45,744][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread', '139900996638464-CurrencyRateThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:45,922][4762 MainProcess 139900996638464 CurrencyRateThread][CurrencyRouletteGame.py _get_currency_rate 50]::	Form currency USD to currency ILS the rate: 3.18
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:46,245][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:46,245][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 159]::	139900996638464-CurrencyRateThread  Finished. Can calculate the money interval while waiting for other threads to finish
+[20 INFO][Games.CurrencyRouletteGame][2021-11-27 10:30:46,245][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 160]::	Got currency rate: 3.18
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:46,245][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 163]::	Thread MoneyIntervalThread is about to start
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:46,245][4762 MainProcess 139900996638464 MoneyIntervalThread][CurrencyRouletteGame.py get_money_interval 62]::	amount: 23
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:46,246][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 165]::	Thread 139900996638464-MoneyIntervalThread started to run
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:46,246][4762 MainProcess 139900996638464 MoneyIntervalThread][CurrencyRouletteGame.py get_money_interval 63]::	currency_rate: 3.18
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:46,246][4762 MainProcess 139900996638464 MoneyIntervalThread][CurrencyRouletteGame.py get_money_interval 66]::	d: 3
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:46,246][4762 MainProcess 139900996638464 MoneyIntervalThread][CurrencyRouletteGame.py get_money_interval 69]::	t: 73.14
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:46,246][4762 MainProcess 139900996638464 MoneyIntervalThread][CurrencyRouletteGame.py get_money_interval 72]::	calculated interval: (71.14, 75.14)
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:46,746][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:47,246][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:47,748][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:48,248][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:48,748][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:49,249][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:49,750][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:50,251][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:50,752][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:51,252][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:51,752][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:52,253][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:52,753][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:53,253][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:53,754][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:54,255][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:54,755][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:55,256][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:55,757][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:56,257][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:56,757][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:57,258][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:57,758][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:58,259][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 150]::	Waiting for these Threads to finish: ['139901005031168-ApplyGuessThread']
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:58,260][4762 MainProcess 139901005031168 ApplyGuessThread][CurrencyRouletteGame.py get_guess_from_user 88]::	Player input: 73
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:58,260][4762 MainProcess 139901005031168 ApplyGuessThread][CurrencyRouletteGame.py get_guess_from_user 96]::	Player guess rounded: 73.0
+[10 DEBUG][Games.CurrencyRouletteGame][2021-11-27 10:30:58,759][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 169]::	Done waiting for threads
+[20 INFO][Games.CurrencyRouletteGame][2021-11-27 10:30:58,760][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 173]::	Calculated money interval: (71.14, 75.14)
+[20 INFO][Games.CurrencyRouletteGame][2021-11-27 10:30:58,760][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 176]::	Player apply guess: 73.0
+[20 INFO][Games.CurrencyRouletteGame][2021-11-27 10:30:58,760][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 180]::	Players guess 73.0 is correct. It is inside interval (71.14, 75.14)
+[20 INFO][Games.CurrencyRouletteGame][2021-11-27 10:30:58,760][4762 MainProcess 139901065197376 MainThread][CurrencyRouletteGame.py play 186]::	Did player win the game: True
+[20 INFO][Live][2021-11-27 10:30:58,760][4762 MainProcess 139901065197376 MainThread][Live.py load_game 166]::	Player finished and win the game Currency Roulette
+[20 INFO][__main__][2021-11-27 10:30:58,760][4762 MainProcess 139901065197376 MainThread][MainGame.py <module> 26]::	WoG Finished
