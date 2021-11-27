@@ -1,7 +1,8 @@
+import json
 import logging
-from typing import List, Dict
+from typing import List, Dict, Any
 
-from Consts import LOGGING_FORMAT, PATH_TO_LOG_FILE
+from Consts import LOGGING_FORMAT, PATH_TO_LOG_FILE, PATH_TO_GAMES_JSON
 from Games.CurrencyRouletteGame import CurrencyRouletteGame
 from Games.GuessGame import GuessGame
 from Games.MemoryGame import MemoryGame
@@ -31,32 +32,19 @@ class Live:
         return f"Hello {name} and welcome to the World of Games (WoG).\nHere you can find many cool games to play."
 
     @staticmethod
-    def _get_games() -> List[Dict]:
+    def _get_games() -> List[Dict[str, Any]]:
         """
         :return: List of details about all games
         """
+
+        games: List[Dict[str, Any]] = list()
         logger.debug("Trying to get games")
-        games: List[Dict] = [
-            {
-                "name": "Memory Game",
-                "description": "a sequence of numbers will appear for 1 second and you have to\nguess it back",
-                "easiest_level": 1,
-                "hardest_level": 5
-            },
-            {
-                "name": "Guess Game",
-                "description": "guess a number and see if you chose like the computer",
-                "easiest_level": 1,
-                "hardest_level": 5
-            },
-            {
-                "name": "Currency Roulette",
-                "description": "Currency Roulette - try\nand guess the value of a random amount of USD in ILS",
-                "easiest_level": 1,
-                "hardest_level": 5
-            }
-        ]
-        logger.debug(str(games))
+        with open(PATH_TO_GAMES_JSON) as games_json:
+            logger.debug(f"Opened file: {PATH_TO_GAMES_JSON}")
+            games = json.loads(games_json.read())
+
+            logger.debug(f"Retrieved games from file: {PATH_TO_GAMES_JSON}")
+            logger.debug(f"Games Details:{games}")
         return games
 
     @staticmethod
@@ -118,11 +106,11 @@ class Live:
     def load_game():
         logger.info(f'Games is loading...')
 
-        chosen_game: dict = None
-        chosen_difficulty_level: int = None
+        chosen_game: dict = dict()
+        chosen_difficulty_level: int = -1
         game: Game = None
 
-        all_games: List[Dict] = Live._get_games()
+        all_games: List[Dict[str, Any]] = Live._get_games()
         logger.debug(f'Games data: {all_games}')
 
         logger.info(f"Prompt player to choose game from {list(map(lambda game: game['name'], all_games))}")

@@ -1,0 +1,26 @@
+[20 INFO][__main__][2021-11-27 11:14:13,191][5360 MainProcess 140469041805120 MainThread][MainGame.py <module> 14]::	WoG Run
+[20 INFO][Live][2021-11-27 11:14:13,194][5360 MainProcess 140469041805120 MainThread][Live.py load_game 107]::	Games is loading...
+[10 DEBUG][Live][2021-11-27 11:14:13,195][5360 MainProcess 140469041805120 MainThread][Live.py _get_games 41]::	Trying to get games
+[10 DEBUG][Live][2021-11-27 11:14:13,195][5360 MainProcess 140469041805120 MainThread][Live.py _get_games 43]::	Opened file: /home/ilya/PycharmProjects/WorldOfGames//games.json
+[10 DEBUG][Live][2021-11-27 11:14:13,195][5360 MainProcess 140469041805120 MainThread][Live.py _get_games 46]::	Retrieved games from file: /home/ilya/PycharmProjects/WorldOfGames//games.json
+[10 DEBUG][Live][2021-11-27 11:14:13,195][5360 MainProcess 140469041805120 MainThread][Live.py _get_games 47]::	Games Details:[{'name': 'Memory Game', 'description': 'a sequence of numbers will appear for 1 second and you have to\nguess it back', 'easiest_level': 1, 'hardest_level': 5}, {'name': 'Guess Game', 'description': 'guess a number and see if you chose like the computer', 'easiest_level': 1, 'hardest_level': 5}, {'name': 'Currency Roulette', 'description': 'Currency Roulette - try\nand guess the value of a random amount of USD in ILS', 'easiest_level': 1, 'hardest_level': 5}]
+[10 DEBUG][Live][2021-11-27 11:14:13,195][5360 MainProcess 140469041805120 MainThread][Live.py load_game 114]::	Games data: [{'name': 'Memory Game', 'description': 'a sequence of numbers will appear for 1 second and you have to\nguess it back', 'easiest_level': 1, 'hardest_level': 5}, {'name': 'Guess Game', 'description': 'guess a number and see if you chose like the computer', 'easiest_level': 1, 'hardest_level': 5}, {'name': 'Currency Roulette', 'description': 'Currency Roulette - try\nand guess the value of a random amount of USD in ILS', 'easiest_level': 1, 'hardest_level': 5}]
+[20 INFO][Live][2021-11-27 11:14:13,195][5360 MainProcess 140469041805120 MainThread][Live.py load_game 116]::	Prompt player to choose game from ['Memory Game', 'Guess Game', 'Currency Roulette']
+[10 DEBUG][Live][2021-11-27 11:14:16,380][5360 MainProcess 140469041805120 MainThread][Live.py _choose_game 65]::	Player input: 1
+[10 DEBUG][Live][2021-11-27 11:14:16,380][5360 MainProcess 140469041805120 MainThread][Live.py _choose_game 68]::	Player ask for game number: 1
+[10 DEBUG][Live][2021-11-27 11:14:16,381][5360 MainProcess 140469041805120 MainThread][Live.py _choose_game 77]::	A game with the requested number: 1 is found {'name': 'Memory Game', 'description': 'a sequence of numbers will appear for 1 second and you have to\nguess it back', 'easiest_level': 1, 'hardest_level': 5}
+[20 INFO][Live][2021-11-27 11:14:16,381][5360 MainProcess 140469041805120 MainThread][Live.py load_game 125]::	Player chose the game: Memory Game
+[20 INFO][Live][2021-11-27 11:14:16,381][5360 MainProcess 140469041805120 MainThread][Live.py load_game 128]::	Prompt player to choose difficulty level from 1 to 5
+[10 DEBUG][Live][2021-11-27 11:14:18,572][5360 MainProcess 140469041805120 MainThread][Live.py _choose_difficulty_level 92]::	Player input for difficulty level: 3
+[10 DEBUG][Live][2021-11-27 11:14:18,573][5360 MainProcess 140469041805120 MainThread][Live.py _choose_difficulty_level 95]::	Player request for difficulty level: 3
+[10 DEBUG][Live][2021-11-27 11:14:18,573][5360 MainProcess 140469041805120 MainThread][Live.py _choose_difficulty_level 102]::	Player chose difficulty level: 3
+[20 INFO][Live][2021-11-27 11:14:18,573][5360 MainProcess 140469041805120 MainThread][Live.py load_game 140]::	Player chose difficulty level: 3
+[20 INFO][Live][2021-11-27 11:14:18,573][5360 MainProcess 140469041805120 MainThread][Live.py load_game 149]::	Player is about to play:Memory Game
+[20 INFO][Games.MemoryGame][2021-11-27 11:14:18,573][5360 MainProcess 140469041805120 MainThread][MemoryGame.py play 80]::	Player is playing MemoryGame
+[20 INFO][Games.MemoryGame][2021-11-27 11:14:18,573][5360 MainProcess 140469041805120 MainThread][MemoryGame.py play 83]::	A sequence to memorize generated: [50, 8, 82]
+[20 INFO][Games.MemoryGame][2021-11-27 11:14:21,514][5360 MainProcess 140469041805120 MainThread][MemoryGame.py play 90]::	Player remembered: [50]
+[20 INFO][Games.MemoryGame][2021-11-27 11:14:21,514][5360 MainProcess 140469041805120 MainThread][MemoryGame.py play 98]::	Players sequence is wrong [50]. The sequence was: [50, 8, 82].
+[20 INFO][Games.MemoryGame][2021-11-27 11:14:21,514][5360 MainProcess 140469041805120 MainThread][MemoryGame.py play 101]::	Did player win the game: False
+[20 INFO][Live][2021-11-27 11:14:21,514][5360 MainProcess 140469041805120 MainThread][Live.py load_game 154]::	Player finished and lose the game Memory Game
+[10 DEBUG][Live][2021-11-27 11:14:21,515][5360 MainProcess 140469041805120 MainThread][Live.py load_game 155]::	Player should see the message: Game lost
+[20 INFO][__main__][2021-11-27 11:14:21,515][5360 MainProcess 140469041805120 MainThread][MainGame.py <module> 26]::	WoG Finished

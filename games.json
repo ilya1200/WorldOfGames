@@ -1,0 +1,20 @@
+[
+   {
+      "name":"Memory Game",
+      "description":"a sequence of numbers will appear for 1 second and you have to\nguess it back",
+      "easiest_level":1,
+      "hardest_level":5
+   },
+   {
+      "name":"Guess Game",
+      "description":"guess a number and see if you chose like the computer",
+      "easiest_level":1,
+      "hardest_level":5
+   },
+   {
+      "name":"Currency Roulette",
+      "description":"Currency Roulette - try\nand guess the value of a random amount of USD in ILS",
+      "easiest_level":1,
+      "hardest_level":5
+   }
+]

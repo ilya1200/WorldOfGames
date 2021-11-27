@@ -1,0 +1,14 @@
+[20 INFO][__main__][2021-11-27 11:16:44,454][5386 MainProcess 140091116201792 MainThread][MainGame.py <module> 14]::	WoG Run
+[20 INFO][Live][2021-11-27 11:16:44,455][5386 MainProcess 140091116201792 MainThread][Live.py load_game 107]::	Games is loading...
+[20 INFO][Live][2021-11-27 11:16:44,455][5386 MainProcess 140091116201792 MainThread][Live.py load_game 116]::	Prompt player to choose game from ['Memory Game', 'Guess Game', 'Currency Roulette']
+[20 INFO][Live][2021-11-27 11:16:48,924][5386 MainProcess 140091116201792 MainThread][Live.py load_game 125]::	Player chose the game: Memory Game
+[20 INFO][Live][2021-11-27 11:16:48,924][5386 MainProcess 140091116201792 MainThread][Live.py load_game 128]::	Prompt player to choose difficulty level from 1 to 5
+[20 INFO][Live][2021-11-27 11:16:52,496][5386 MainProcess 140091116201792 MainThread][Live.py load_game 140]::	Player chose difficulty level: 4
+[20 INFO][Live][2021-11-27 11:16:52,497][5386 MainProcess 140091116201792 MainThread][Live.py load_game 149]::	Player is about to play:Memory Game
+[20 INFO][Games.MemoryGame][2021-11-27 11:16:52,497][5386 MainProcess 140091116201792 MainThread][MemoryGame.py play 80]::	Player is playing MemoryGame
+[20 INFO][Games.MemoryGame][2021-11-27 11:16:52,497][5386 MainProcess 140091116201792 MainThread][MemoryGame.py play 83]::	A sequence to memorize generated: [20, 56, 20, 2]
+[20 INFO][Games.MemoryGame][2021-11-27 11:17:17,144][5386 MainProcess 140091116201792 MainThread][MemoryGame.py play 90]::	Player remembered: [20, 56, 20, 2]
+[20 INFO][Games.MemoryGame][2021-11-27 11:17:17,144][5386 MainProcess 140091116201792 MainThread][MemoryGame.py play 95]::	Players sequence is correct [20, 56, 20, 2]. The sequence was: [20, 56, 20, 2].
+[20 INFO][Games.MemoryGame][2021-11-27 11:17:17,145][5386 MainProcess 140091116201792 MainThread][MemoryGame.py play 101]::	Did player win the game: True
+[20 INFO][Live][2021-11-27 11:17:17,145][5386 MainProcess 140091116201792 MainThread][Live.py load_game 154]::	Player finished and win the game Memory Game
+[20 INFO][__main__][2021-11-27 11:17:17,145][5386 MainProcess 140091116201792 MainThread][MainGame.py <module> 26]::	WoG Finished
