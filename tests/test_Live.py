@@ -1,8 +1,9 @@
-from typing import List, Dict, Any
+import io
+import sys
 
 import pytest
-
 from Live import Live
+from typing import List, Dict, Any
 
 
 @pytest.mark.parametrize(
@@ -28,3 +29,20 @@ def test_get_games():
 
     actual_games_list: List[str] = list(map(lambda game: game['name'], games))
     assert actual_games_list == expected_games
+
+
+@pytest.mark.parametrize(
+    "easies,hardest,selected_in",
+    [
+        (1, 5, 3),
+        (1, 5, 4),
+        (1, 5, 5)
+    ])
+def test_choose_difficulty_level(easies: int, hardest: int, selected_in: int, monkeypatch):
+    monkeypatch.setattr(sys, 'stdin', io.StringIO(str(selected_in)))
+
+    selected_out: int = Live._choose_difficulty_level(easies, hardest)
+
+    assert type(selected_out) == int
+    assert easies <= selected_out <= hardest
+    assert selected_out == selected_in
