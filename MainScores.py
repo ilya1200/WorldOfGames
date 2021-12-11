@@ -1,8 +1,8 @@
 from pathlib import Path
-from typing import Union
-
 from flask import Flask, render_template
-from Score.Score import Score
+
+import Utils
+from Consts import ROOT_DIR
 
 app = Flask(__name__)
 my_dict = dict()
@@ -10,7 +10,7 @@ my_dict = dict()
 
 @app.route('/')
 def index() -> str:
-    SCORE_FILE: Path = Score.SCORE_FILE_PATH
+    SCORE_FILE: Path = Path(f"{ROOT_DIR}/Score/{Utils.SCORES_FILE_NAME}")
 
     try:
         with open(SCORE_FILE, 'r') as score_file:
@@ -19,7 +19,7 @@ def index() -> str:
             first_line: str = first_line_raw.strip()
             score: int = int(first_line)
             return render_template('index.html', SCORE=score)
-    except Union[ValueError, IndexError, FileNotFoundError]:
+    except (ValueError, IndexError, FileNotFoundError):
         return render_template('error.html', ERROR="Failed to read score")
 
 
