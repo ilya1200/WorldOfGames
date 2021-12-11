@@ -1,8 +1,6 @@
 from pathlib import Path
 from flask import Flask, render_template
-
-import Utils
-from Consts import ROOT_DIR
+from Score.Score import Score
 
 app = Flask(__name__)
 my_dict = dict()
@@ -10,7 +8,7 @@ my_dict = dict()
 
 @app.route('/')
 def index() -> str:
-    SCORE_FILE: Path = Path(f"{ROOT_DIR}/Score/{Utils.SCORES_FILE_NAME}")
+    SCORE_FILE: Path = Score.SCORE_FILE_PATH
 
     try:
         with open(SCORE_FILE, 'r') as score_file:
