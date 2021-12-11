@@ -3,6 +3,7 @@ import random
 import time
 from typing import List
 
+import Utils
 from Consts import LOGGING_FORMAT, PATH_TO_LOG_FILE
 from Interfaces.Game import Game
 
@@ -84,7 +85,7 @@ class MemoryGame(Game):
 
         print('\r', "Remember the sequence:" + str(sequence_to_memorize), end='')
         time.sleep(MemoryGame.TIME_TO_MEMORIZE)
-        print('\r', '', end='')  # clear the sequence from the console
+        Utils.screen_cleaner()  # clear the sequence from the console
 
         list_from_user: List[int] = self.get_list_from_user()
         logger.info(f"Player remembered: {list_from_user}")
