@@ -7,6 +7,7 @@ from Games.CurrencyRouletteGame import CurrencyRouletteGame
 from Games.GuessGame import GuessGame
 from Games.MemoryGame import MemoryGame
 from Interfaces.Game import Game
+from Score.Score import Score
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -154,3 +155,7 @@ class Live:
         logger.info(f"Player finished and {game_status} the game {chosen_game['name']}")
         logger.debug(f"Player should see the message: {Live._game_over_messages[game_status]}")
         print(Live._game_over_messages[game_status])
+
+        if is_win:
+            Score.add_score(chosen_difficulty_level)
+            logger.debug(f"Player won a game with difficulty: {chosen_difficulty_level}.Added score to player ")
