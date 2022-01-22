@@ -14,5 +14,7 @@ RUN pip install -r requirements.txt
 # Make port 5001 available to services on the same docker network
 EXPOSE 5001
 
+ENV FLASK_APP=MainScores.py
+
 # Run app.py when the container launches
-CMD python MainScores.py
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
