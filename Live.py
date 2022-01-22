@@ -7,7 +7,7 @@ from CurrencyRouletteGame import CurrencyRouletteGame
 from GuessGame import GuessGame
 from MemoryGame import MemoryGame
 from Interfaces.Game import Game
-from Score.Score import Score
+from Score import Score
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
