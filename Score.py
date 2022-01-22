@@ -13,7 +13,7 @@ logger.addHandler(file_handler)
 
 
 class Score:
-    SCORE_FILE_PATH: Path = Path(f"{ROOT_DIR}/Score/{Utils.SCORES_FILE_NAME}")
+    SCORE_FILE_PATH: Path = Path(f"{ROOT_DIR}/{Utils.SCORES_FILE_NAME}")
 
     @staticmethod
     def _read_score() -> int:
