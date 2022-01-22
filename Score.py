@@ -1,7 +1,6 @@
 import logging
 from pathlib import Path
 
-import Utils
 from Consts import ROOT_DIR, LOGGING_FORMAT, PATH_TO_LOG_FILE
 
 logger = logging.getLogger(__name__)
@@ -13,7 +12,7 @@ logger.addHandler(file_handler)
 
 
 class Score:
-    SCORE_FILE_PATH: Path = Path(f"{ROOT_DIR}/{Utils.SCORES_FILE_NAME}")
+    SCORE_FILE_PATH: Path = Path(f"{ROOT_DIR}/Scores.txt")
 
     @staticmethod
     def _read_score() -> int:
