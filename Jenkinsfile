@@ -8,11 +8,6 @@ pipeline {
             url: 'ssh:git@github.com:ilya1200/WorldOfGames.git'
         }
     }
-    stage('build') {
-        steps {
-            sh 'python --version'
-        }
-    }
     stage('Run Flask') {
         steps {
             sh 'python /app/flask_app.py &'
