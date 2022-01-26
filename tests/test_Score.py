@@ -5,7 +5,7 @@ import pytest
 
 import Utils
 from Consts import ROOT_DIR
-from Score.Score import Score
+from Score import Score
 
 
 class TestScore:

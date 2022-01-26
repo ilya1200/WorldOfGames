@@ -1,6 +1,6 @@
 from pathlib import Path
 from flask import Flask, render_template
-from Score.Score import Score
+from Score import Score
 
 app = Flask(__name__)
 my_dict = dict()
