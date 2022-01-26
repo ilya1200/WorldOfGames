@@ -4,8 +4,9 @@ pipeline {
     }
     stage('Checkout repository') {
         steps{
-            git branch: 'level_4',
-            url: 'ssh:git@github.com:ilya1200/WorldOfGames.git'
+            git branch: 'master',
+            credentialsId: 'ilya1200',
+            url: 'https://github.com/ilya1200/WorldOfGame.git'
         }
     }
     stage('Run App') {
