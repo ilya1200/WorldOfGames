@@ -8,15 +8,9 @@ pipeline {
             url: 'ssh:git@github.com:ilya1200/WorldOfGames.git'
         }
     }
-    stage('Run Flask') {
+    stage('Run App') {
         steps {
-            sh 'python /app/flask_app.py &'
-            sh 'curl 127.0.0.1:80'
-        }
-    }
-    stage('Run app') {
-       steps {
-        sh 'python ./MainScores.py'
+            sh 'python ./MainScores.py &'
         }
     }
     stage('Test with E2E') {
