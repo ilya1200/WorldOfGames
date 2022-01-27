@@ -1,6 +1,7 @@
 # Use an official Python runtime as a parent image
 FROM python:3.8-slim
 RUN apt-get update && apt-get install -y procps less wget curl net-tools
+RUN apt-get install -y curl unzip wget xvfb
 
 # Install ChromeDriver
 RUN CHROMEDRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE` && \
@@ -25,6 +26,11 @@ COPY . /app
 
 # Install requirements
 RUN pip install -r requirements.txt
+RUN pip3 install pyvirtualdisplay
+
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
+ENV PYTHONUNBUFFERED=1
 
 # Make port 5001 available to services on the same docker network
 EXPOSE 5001
