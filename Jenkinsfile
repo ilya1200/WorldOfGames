@@ -7,7 +7,7 @@ pipeline {
             steps{
                 git branch: 'master',
                 credentialsId: 'ilya1200',
-                url: 'https://github.com/ilya1200/WorldOfGame.git'
+                url: 'https://github.com/ilya1200/WorldOfGames.git'
             }
         }
         stage('Run App') {
