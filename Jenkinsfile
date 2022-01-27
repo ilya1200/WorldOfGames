@@ -12,12 +12,12 @@ pipeline {
         }
         stage('Run App') {
             steps {
-                sh 'python ./MainScores.py'
+                sh 'python3 ./MainScores.py'
             }
         }
         stage('Test with E2E') {
             steps {
-                sh 'python ./e2e.py'
+                sh 'python3 ./e2e.py'
             }
         }
     }
