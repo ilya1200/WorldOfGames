@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        dockerfile true
+        docker
     }
     stages{
         stage('Checkout repository') {
