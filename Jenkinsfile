@@ -12,6 +12,9 @@ pipeline {
         }
         stage('Run App') {
             steps {
+                sh 'pwd'
+                sh 'ls -l'
+                sh 'echo $HOME'
                 sh 'python3 ./MainScores.py'
             }
         }
