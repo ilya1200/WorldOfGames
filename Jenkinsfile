@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        dockerfile true
-    }
+    agent "worker-172.18.0.2-a5c8131e"
     stages{
         stage('Checkout repository') {
             steps{
