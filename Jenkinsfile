@@ -1,22 +1,11 @@
 pipeline {
-    agent {"docker"}
-    stages{
-        stage('Checkout repository') {
-            steps{
-                git branch: 'master',
-                credentialsId: 'ilya1200',
-                url: 'https://github.com/ilya1200/WorldOfGame.git'
-            }
-        }
-        stage('Run App') {
+    agent {
+        docker { image 'node:16.13.1-alpine' }
+    }
+    stages {
+        stage('Test') {
             steps {
-                sh 'python ./MainScores.py'
-            }
-        }
-        stage('Test with E2E') {
-            steps {
-                sh 'python ./e2e.py'
+                sh 'node --version'
             }
         }
     }
-}
