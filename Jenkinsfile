@@ -3,6 +3,11 @@ pipeline {
         dockerfile true
     }
     stages{
+        stage('ls') {
+            steps{
+                 sh 'ls -l'
+            }
+        }
         stage('Checkout repository') {
             steps{
                 git branch: 'master',
