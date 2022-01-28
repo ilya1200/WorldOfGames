@@ -5,7 +5,7 @@ pipeline {
     stages{
         stage('Checkout repository') {
             steps{
-                git branch: 'level_4',
+                git branch: 'master',
                 credentialsId: 'ilya1200',
                 url: 'https://github.com/ilya1200/WorldOfGames.git'
             }
