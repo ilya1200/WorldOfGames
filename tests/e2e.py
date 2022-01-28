@@ -1,3 +1,4 @@
+import os
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.chrome.webdriver import WebDriver
@@ -17,6 +18,7 @@ def chrome_driver() -> WebDriver:
     chrome_options.add_argument("no-sandbox")
     chrome_options.add_argument("--disable-extensions")
     chrome_options.add_argument("--headless")
+    os.chmod(CHROME_DRIVER, 0o755)
     chrome_driver: WebDriver = webdriver.Chrome(chrome_options=chrome_options, executable_path=CHROME_DRIVER)
     chrome_driver.implicitly_wait(TIME_TO_WAIT)
     return chrome_driver
