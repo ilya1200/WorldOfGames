@@ -43,6 +43,3 @@ def main_function():
         exit(0)
     exit(-1)
 
-
-if __name__ == '__main__':
-    main_function()

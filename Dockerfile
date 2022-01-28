@@ -9,11 +9,6 @@ COPY . /app
 
 # Install requirements
 RUN pip install -r requirements.txt
-RUN pip3 install pyvirtualdisplay
-
-ENV LANG C.UTF-8
-ENV LC_ALL C.UTF-8
-ENV PYTHONUNBUFFERED=1
 
 # Make port 5001 available to services on the same docker network
 EXPOSE 5001
